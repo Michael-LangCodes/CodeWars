@@ -13,19 +13,16 @@
 // ""                                        =>  false
 
 //My Solution
-function generateHashtag (str) {
-  const newstr = str.replaceAll(' ', '');
-  if (newstr.length>140){
-    console.log('false,too long')
-    return false
-  }else if (newstr.length===0){
-    console.log('false, too short')
-    return false
-  }else{
-    let output = '#'
-    newstr.split(' ').forEach(e => console.log(e.charAt(0).toUpperCase()+ e.slice(1)))
-    newstr.split(' ').forEach(e => output+=(e.charAt(0).toUpperCase()+ e.slice(1)))//console.log(e.charAt(0).toUpperCase()+ e.slice(1)))
-    console.log(output)
-    return output
-  }
+function generateHashtag(str) {
+  const words = str.trim().split(/\s+/);
+
+  if (words.length === 0 || words[0] === "") return false;
+
+  const hashtag =
+    "#" +
+    words
+      .map(word => word[0].toUpperCase() + word.slice(1))
+      .join("");
+
+  return hashtag.length > 140 ? false : hashtag;
 }
