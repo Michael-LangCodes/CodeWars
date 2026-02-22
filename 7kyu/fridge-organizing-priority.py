@@ -23,9 +23,12 @@
 
 #My Solution
 def fridge_organizer(items):
-    for i in range(len(items)):
-        if items[i].expiry_days < 0:
-            pass
-        else: 
-            print(items[i])
-    pass
+    filtered_items = list(filter(lambda x: x.expiry_days >= 0, items))
+    print(filtered_items)
+    new = sorted(filtered_items, key=lambda item: item.name)
+    new = sorted(new, key=lambda item: item.expiry_days)
+    new = sorted(new, key=lambda item: item.is_almost_empty, reverse = True)
+    output = []
+    for i in range(len(new)):
+        output.append(new[i].name)
+    return output
