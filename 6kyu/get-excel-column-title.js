@@ -64,3 +64,21 @@
 // The task is really sapid and hard. If you're stuck - write to the discussion board, there are many smart people willing to help.
 
 //Solution
+function getColumnTitle(num) {
+  if (typeof(num) !== 'number'){
+    throw new TypeError("Input Type is String");
+  }else if(num < 1){
+    throw new RangeError("Input Type is Empty");
+  }
+  
+  let result = "";
+
+  while (num > 0) {
+    num--; // adjust because there is no 0 in Excel columns
+    let remainder = num % 26;
+    result = String.fromCharCode(65 + remainder) + result;
+    num = Math.floor(num / 26);
+  }
+
+  return result;
+}
